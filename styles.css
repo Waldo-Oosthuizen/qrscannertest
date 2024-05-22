@@ -67,7 +67,7 @@ button {
   width: max-content;
   border: 0;
   padding: 0.7rem 1rem;
-  border-radius: 2rem;
+  border-radius: 5px;
   text-transform: uppercase;
   box-shadow: 2px 2px 0px 1px #c9c9c954;
   color: white;
@@ -140,7 +140,7 @@ img#changeCamera:active {
 
 .qr-box button {
   margin-top: 1rem;
-  background-color: #34bb6f;
+  background-color: orange;
 }
 
 .box {

@@ -59,8 +59,7 @@
             });
 
             const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-                document.querySelector("#info span").innerText = decodedText;
-                document.getElementById("info").style.display = "block";
+                alert(`Scanned result: ${decodedText}`);
             };
 
             document.getElementById("startButton").addEventListener("click", function () {

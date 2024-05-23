@@ -21,8 +21,6 @@
             </div>
             <div class="reader-container">
                 <div id="reader"></div>
-                <img id="changeCamera" src="https://img.icons8.com/stickers/100/switch-camera.png"
-                    alt="switch-camera" />
             </div>
             <div id="qr-reader-results"></div>
             <button id="startButton">Scan QR code</button>
@@ -83,19 +81,7 @@
                 }
             });
 
-            document.getElementById("changeCamera").addEventListener("click", function () {
-                if (currentCamera) {
-                    html5QrCode.stop();
-                    getBackCamera().then((newCameraId) => {
-                        if (newCameraId) {
-                            currentCamera = newCameraId;
-                            html5QrCode.start(currentCamera, config, qrCodeSuccessCallback);
-                        }
-                    });
-                } else {
-                    alert("No camera available to switch.");
-                }
-            });
+
 
         </script>
 </body>

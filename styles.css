@@ -10,6 +10,15 @@ body {
   color: #ffff;
 }
 
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   text-align: center;
   font-weight: 500;
@@ -174,5 +183,84 @@ img#changeCamera:active {
   margin-bottom: -0.2rem;
 }
 
+/* styles.css */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
+.qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.reader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#qr-reader-results {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 60px;
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: orange;
+}
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#qr-reader-results {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 60px;
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: orange;
+}

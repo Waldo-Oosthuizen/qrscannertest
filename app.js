@@ -1,47 +1,33 @@
-// const html5QrCode = new Html5Qrcode("reader");
-// const config = { fps: 10, qrbox: 300 };
-// let currentIndex = null;
-// let currentCamera = null;
+const findMyLocation = () => {
+  const success = (position) => {
+    // Convert object data to string
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
 
-// async function changeCamera() {
-//   const cameras = await Html5Qrcode.getCameras();
-//   if (cameras && cameras.length > 1) {
-//     currentIndex = currentIndex ? 0 : 1;
-//   } else {
-//     currentIndex = 0;
-//   }
-//   return cameras[currentIndex].id;
-// }
+    fetch(geoApiUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert(
+          "Latitude: " +
+            latitude +
+            " " +
+            "Longitude: " +
+            longitude +
+            " " +
+            "City: " +
+            data.city
+        );
+      });
+  };
 
-// changeCamera().then((newCameraId) => {
-//   currentCamera = newCameraId;
-// });
+  const error = () => {
+    alert("Unable to retrieve your location");
+  };
+  navigator.geolocation.getCurrentPosition(success, error);
+};
 
-// const qrCodeSuccessCallback = (decodedText, decodedResult) => {
-//   document.querySelector("#info span").innerText = decodedText;
-//   document.getElementById("info").style.display = "block";
-// };
-
-// document.getElementById("startButton").addEventListener("click", function () {
-//   var scanState = html5QrCode.getState();
-//   if (scanState == 2) {
-//     html5QrCode.stop();
-//     this.textContent = "Start scanning";
-//     this.style.background = "#34bb6f";
-//     document.getElementById("changeCamera").style.display = "none";
-//   } else {
-//     html5QrCode.start(currentCamera, config, qrCodeSuccessCallback);
-//     this.textContent = "Stop scan";
-//     this.style.background = "#e34242";
-//     document.getElementById("info").style.display = "none";
-//     document.getElementById("changeCamera").style.display = "inline-block";
-//   }
-// });
-
-// document.getElementById("changeCamera").addEventListener("click", function () {
-//   html5QrCode.stop();
-//   changeCamera().then((newCameraId) => {
-//     currentCamera = newCameraId;
-//     html5QrCode.start(currentCamera, config, qrCodeSuccessCallback);
-//   });
-// });
+document
+  .getElementById("loctationStatus")
+  .addEventListener("click", findMyLocation);

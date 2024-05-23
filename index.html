@@ -12,19 +12,25 @@
 
 <body>
     <div class="container">
-        <h1>Gaurd Sense</h1>
+        <h1>Guard Sense</h1>
 
         <div class="qr-box">
             <div class="box info" id="info">
                 <img src="https://img.icons8.com/3d-fluency/94/info.png" alt="info" />
                 <span></span>
             </div>
-            <div class="reader-container">
-                <div id="reader"></div>
-            </div>
             <div id="qr-reader-results"></div>
-            <button id="startButton" style="backgroud-color: #40a540">Scan QR code</button>
+            <button id="openModalButton" style="background-color: #40a540">Scan QR code</button>
             <button>Send Location</button>
+        </div>
+
+        <!-- Modal structure -->
+        <div id="qrModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <div id="reader"></div>
+                <button id="startButton">Start scanning</button>
+            </div>
         </div>
 
         <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
@@ -61,6 +67,27 @@
                 alert(`Scanned result: ${decodedText}`);
             };
 
+            // Modal functionality
+            const modal = document.getElementById("qrModal");
+            const openModalButton = document.getElementById("openModalButton");
+            const closeButton = document.querySelector(".close-button");
+
+            openModalButton.addEventListener("click", function () {
+                modal.style.display = "block";
+            });
+
+            closeButton.addEventListener("click", function () {
+                modal.style.display = "none";
+                html5QrCode.stop(); // Stop the scanner when the modal is closed
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    html5QrCode.stop(); // Stop the scanner when clicking outside the modal
+                }
+            });
+
             document.getElementById("startButton").addEventListener("click", function () {
                 if (currentCamera) {
                     var scanState = html5QrCode.getState();
@@ -68,20 +95,15 @@
                         html5QrCode.stop();
                         this.textContent = "Start scanning";
                         this.style.background = "#34bb6f";
-                        document.getElementById("changeCamera").style.display = "none";
                     } else { // QR Code scanner is in SCANNING state
                         html5QrCode.start(currentCamera, config, qrCodeSuccessCallback);
-                        this.textContent = "Stop scan";
+                        this.textContent = "Stop scanning";
                         this.style.background = "#e34242";
-                        document.getElementById("info").style.display = "none";
-                        document.getElementById("changeCamera").style.display = "inline-block";
                     }
                 } else {
                     alert("No camera available to start scanning.");
                 }
             });
-
-
         </script>
 </body>
 
